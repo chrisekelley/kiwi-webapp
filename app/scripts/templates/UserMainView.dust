@@ -1,0 +1,13 @@
+<h1>ID verification Confirmed</h1>
+
+<p>You have been registered to use this device.</p>
+
+<p>
+    Do you want to:
+</p>
+<p><a href="#" data-role="button" id="registrationLink" class="scanner-buttons">Register a new individual</a></p>
+<p><a href="#" data-role="button" id="registrationLink" class="scanner-buttons">Enter a new report</a></p>
+<p><a href="#" data-role="button" id="registrationLink" class="scanner-buttons">Log out</a></p>
+
+
+
