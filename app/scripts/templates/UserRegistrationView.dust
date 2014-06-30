@@ -1,0 +1,4 @@
+<p>User Registration</p>
+<input type="text" name="gender" id="gender" placeholder="Gender"/>
+<input type="text" name="dob" id="dob" placeholder="DOB: Month / YYYY"/>
+<p><a data-role="button" id="submitUserRegistration" class="scanner-buttons">Press to Register</a></p>
