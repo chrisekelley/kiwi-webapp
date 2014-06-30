@@ -7,55 +7,107 @@ define([
     "views/VerifyView",
     "views/UserRegistrationView",
     "views/UserMainView",
+    "views/UserFormView",
     "dust"
 ],
 
-function (_, Backbone, Marionette, VerifyView, UserRegistrationView, UserMainView) {
+function (_, Backbone, Marionette, VerifyView, UserRegistrationView, UserMainView, UserFormView) {
 
-    var App = new Backbone.Marionette.Application();
+    window.App = new Backbone.Marionette.Application();
     console.log("Creating new Marionette App")
 
     // An init function for your main application object
     App.addInitializer(function () {
-        this.root = '/';
+        this.root = '';
     });
 
     App.Controller = {
-        displayUserVerification: function(){
-            var staticView = new VerifyView();
+        displayScanner: function(user){
+            var staticView;
+            if (typeof user !== 'undefined') {
+                staticView = new VerifyView({template: 'ScanVerifyView'});
+            } else {
+                staticView = new VerifyView({template: 'VerifyView'});
+            }
+
             App.mainRegion.show(staticView);
         },
-        displayRegistration: function(){
+        displayRegistration: function(user){
             $( "#message").html("")
-            var staticView = new UserRegistrationView();
+            var staticView = null;
+            if (typeof user !== 'undefined') {
+                staticView = new UserRegistrationView({template: 'UserRegistrationView'});
+            } else {
+                staticView = new UserRegistrationView({template: 'AdminUserRegistrationView'});
+            }
+            staticView.userType = user;
             App.mainRegion.show(staticView);
         },
         displayUserMain: function(){
             $( "#message").html("")
             var staticView = new UserMainView();
             App.mainRegion.show(staticView);
+        },
+        postUserRegistrationMenu: function(){
+            $( "#message").html("")
+            var staticView = new UserMainView({template: 'PostUserRegistrationMenuView'});
+            App.mainRegion.show(staticView);
+        },
+        displayReportMenu: function(){
+            $( "#message").html("")
+            var staticView = new UserFormView({template: 'UserReportMenu'});
+            App.mainRegion.show(staticView);
+            $.mobile.changePage( "#userMenu" , { reverse: false, changeHash: true } );
+            App.navigate("displayReportMenu");
+//            $.mobile.linkBindingEnabled = false;
+        },
+        displayImmunization: function(){
+            $( "#message").html("")
+            var staticView = new UserFormView({template: 'ImmunizationForm'});
+            App.mainRegion.show(staticView);
+            $.mobile.changePage( "#userMenu" , { reverse: false, changeHash: true } );
+            App.navigate("displayImmunization");
+//            $.mobile.linkBindingEnabled = false;
         }
     };
 
-    var API = {
-        home: function(){
-            App.Controller.displayUserVerification();
-        },
-        registration: function(){
-            App.Controller.displayRegistration();
-        },
-        userMain: function(){
-            App.Controller.displayUserMain();
-        }
-    };
 
     App.Router = Marionette.AppRouter.extend({
         appRoutes: {
+            "": "home",
             "home": "home",
             "registration": "registration",
-            "userMain": "userMain"
+            "userScan": "userScan",
+            "userMain": "userMain",
+            "postUserRegistrationMenu": "postUserRegistrationMenu",
+            "displayReportMenu": "displayReportMenu",
+            "displayImmunization": "displayImmunization"
         }
     });
+
+    var API = {
+        home: function(){
+            App.Controller.displayScanner();
+        },
+        registration: function(user){
+            App.Controller.displayRegistration(user);
+        },
+        userScan: function(user){
+            App.Controller.displayScanner("user");
+        },
+        userMain: function(){
+            App.Controller.displayUserMain();
+        },
+        postUserRegistrationMenu: function(){
+            App.Controller.postUserRegistrationMenu();
+        },
+        displayReportMenu: function(){
+            App.Controller.displayReportMenu();
+        },
+        displayImmunization: function(){
+            App.Controller.displayImmunization();
+        }
+    };
 
     App.on("home", function(){
          App.navigate("home");
@@ -65,16 +117,36 @@ function (_, Backbone, Marionette, VerifyView, UserRegistrationView, UserMainVie
          App.navigate("registration");
          API.registration();
          });
+    App.on("userRegistration", function(){
+         App.navigate("userRegistration");
+         API.registration("user");
+         });
+    App.on("userScan", function(){
+         App.navigate("userScan");
+         API.userScan("user");
+         });
     App.on("userMain", function(){
          App.navigate("userMain");
          API.userMain();
          });
+    App.on("postUserRegistrationMenu", function(){
+         App.navigate("postUserRegistrationMenu");
+         API.postUserRegistrationMenu();
+         });
+    App.on("displayReportMenu", function(){
+         API.displayReportMenu();
+//         $.mobile.changePage( "#userMenu" , { reverse: false, changeHash: false } );
+         });
+    App.on("displayImmunization", function(){
+         API.displayImmunization();
+//         $.mobile.changePage( "#userMenu" , { reverse: false, changeHash: false } );
+         });
 
     // Add as many of these as you like
     App.addInitializer(function () {
-        new App.Router({
-            controller: API
-        });
+
+        // Adds any methods to be run after the app was initialized.
+            this.initAppEvents();
     });
 
     App.addRegions({
@@ -83,7 +155,9 @@ function (_, Backbone, Marionette, VerifyView, UserRegistrationView, UserMainVie
 
     App.navigate = function(route, options){
         options || (options = {});
+        console.log("App.navigate to " + route);
         Backbone.history.navigate(route, options);
+//        history.pushState({}, null, "#" + route);
     };
 
     App.getCurrentRoute = function(){
@@ -93,15 +167,39 @@ function (_, Backbone, Marionette, VerifyView, UserRegistrationView, UserMainVie
     App.on("initialize:after", function(){
 
 
-        if(Backbone.history){
+//        if(Backbone.history){
 //            Backbone.history.start();
-            Backbone.history.start({ pushState: true, root: App.root });
+////            Backbone.history.start({ pushState: false, root: App.root });
+////            Backbone.history.start({ pushState: true, root: App.root });
+////            Backbone.history.start({ pushState: true });
+//
+//            console.log("this.getCurrentRoute(): " + this.getCurrentRoute())
+//            if(this.getCurrentRoute() === ""){
+//                App.trigger("home");
+//            }
+//        }
+
+//        console.log("initialize:after");
+    });
 
 
+    App.on('start', function () {
+        if(Backbone.history){
+            Backbone.history.start();
+//            Backbone.history.start({ pushState: false, root: App.root });
+//            Backbone.history.start({ pushState: true, root: App.root });
+//            Backbone.history.start({ pushState: true });
+            var hash = window.location.hash;
+            console.log("this.getCurrentRoute(): " + this.getCurrentRoute() + " hash: " + hash);
             if(this.getCurrentRoute() === ""){
                 App.trigger("home");
             }
         }
+    });
+
+    $('#verify').click(function(e) {
+        console.log("clicked verify ya fool.")
+        e.preventDefault();
     });
 
     App.progressBar = {
@@ -110,6 +208,39 @@ function (_, Backbone, Marionette, VerifyView, UserRegistrationView, UserMainVie
             $(id).slider("refresh");
         }
     }
+
+    // kudos: https://github.com/net-uk-sweet/bbb-phonegap-marionette-jqm-boilerplate
+    App.initAppEvents = function() {
+
+        new App.Router({
+            controller: API
+        });
+
+
+        // All links with the role attribute set to nav-main will be
+        // handled by the application's router.
+//        $('a[data-role="nav-main"]').live('click', function(/*e*/) {
+//            App.navigate($(this).attr('href'));
+//        });
+
+        App.vent.on('navigate', function(e) {
+            App.navigate(e);
+        });
+
+//        function navigate(url) {
+//            App.Router.navigate(url, { trigger: true });
+//        }
+
+        // Remove page from DOM when it's being replaced
+//        $('div[data-role="page"]').live('pagehide', function (e /*, ui */) {
+//            $(e.currentTarget).remove();
+//        });
+//
+//        // Triggering a create on pageshow ensures any dynamic content is JQM-ified
+//        $('div[data-role="page"]').live('pageshow', function (/* event, ui */) {
+//            $(this).trigger('create');
+//        });
+    };
 
     // Return the instantiated app (there should only be one)
     return App;

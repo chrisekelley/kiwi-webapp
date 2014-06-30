@@ -1,0 +1,23 @@
+<!-- <div id="deviceready" class="blink">
+            <p class="event listening">Connecting to Device</p>
+            <p class="event received">Device is Ready</p>
+        </div> -->
+<!-- <p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p> -->
+<p>To register an individual, please place thumb on the scanner and press the "Scan" button.</p>
+<p>
+    <!--<a href="#" data-role="button" id="register" class="scanner-buttons">Register</a>-->
+    <a data-role="button" id="scan" class="scanner-buttons">Scan</a>
+    <!--<a href="#" data-role="button" id="blink" class="scanner-buttons">Test</a>-->
+</p>
+<input type="range" name="slider" id="sliderNewIndividual" data-highlight="true" min="0" max="50" value="0" style="display: none">
+<p>
+    Do you want to verify if this individual was registered before?
+</p>
+<p style="font-style: italic">If Yes, you must be connected to server</p>
+<p>
+    <a data-role="button" id="verifyYes" class="scanner-buttons">Yes</a> &nbsp&nbsp&nbsp&nbsp&nbsp
+    <a data-role="button" id="verifyNo" class="scanner-buttons">No</a>
+</p>
+

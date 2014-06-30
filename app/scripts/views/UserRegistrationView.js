@@ -2,23 +2,31 @@ define([
     'backbone',
     'marionette',
     "templates",
-    "dust",
-    'app'
+    "dust"
 ],
 
-function (Backbone, Marionette, compiledTemplates, dust, App) {
+function (Backbone, Marionette, compiledTemplates, dust) {
 
     return Backbone.Marionette.ItemView.extend({
 
         template: 'UserRegistrationView',
 
         events: {
-            'click #submitUserRegistration': "submitUserRegistration"
+            'click #submitUserRegistration': "submitUserRegistration",
+            'click #submitAdminRegistration': "submitAdminRegistration"
         },
 
-        initialize: function () {},
+        userType: null,
+
+        initialize: function () {
+            console.log("init")
+        },
 
         submitUserRegistration: function() {
+            App.trigger("postUserRegistrationMenu");
+        },
+
+        submitAdminRegistration: function() {
             App.trigger("userMain");
         }
 

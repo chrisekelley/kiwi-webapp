@@ -4,6 +4,14 @@ This is the webapp for [kiwi-cordova](https://github.com/chrisekelley/kiwi-cordo
 
 # Development
 
+## Runnning
+
+Launch the web server:
+
+    grunt server
+
+View the app using the [Ripple plugin for Chrome](https://chrome.google.com/webstore/detail/ripple-emulator-beta/geelfhphabnejjhdalkjhgipohgpdnoc?hl=en).
+
 ## Bootstrapping
 
 This was bootstrapped using the [Generator Maryo](https://github.com/simonblee/generator-maryo).

@@ -8,7 +8,7 @@
 <p>To start please verify User Identification by placing thumb on the scanner and pressing the "Scan" button.</p>
 <p>
     <!--<a href="#" data-role="button" id="register" class="scanner-buttons">Register</a>-->
-    <a href="#" data-role="button" id="verify" class="scanner-buttons">Scan</a>
+    <a data-role="button" id="verify" class="scanner-buttons">Scan</a>
     <!--<a href="#" data-role="button" id="blink" class="scanner-buttons">Test</a>-->
 </p>
-<input type="range" name="slider" id="slider" data-highlight="true" min="0" max="50" value="50" style="display: none">
+<input type="range" name="slider" id="slider" data-highlight="true" min="0" max="50" value="0" style="display: none">

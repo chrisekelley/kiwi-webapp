@@ -16,6 +16,10 @@ function ($, Backbone, App) {
     // Disabling this will prevent jQuery Mobile from handling hash changes
     $.mobile.hashListeningEnabled = false;
 
+    $(document).bind("mobileinit", function () {
+        $.mobile.linkBindingEnabled = false;
+    });
+
     // Define your master router on the application namespace and trigger all
     // navigation from this instance.
     console.log("Starting App")
@@ -24,10 +28,10 @@ function ($, Backbone, App) {
     // Trigger the initial route and enable HTML5 History API support
 //    Backbone.history.start({ pushState: true, root: App.root });
 
-    if(Backbone.history.fragment === ""){
-        Backbone.history.navigate("home");
-        App.List.Controller.listContacts();
-    }
+//    if(Backbone.history.fragment === ""){
+//        Backbone.history.navigate("home");
+//        App.List.Controller.listContacts();
+//    }
 
     // All navigation that is relative should be passed through the navigate
     // method, to be processed by the router. If the link has a `data-bypass`
@@ -50,6 +54,17 @@ function ($, Backbone, App) {
     $(document).on("click", "a[data-bypass]", function (e) {
         e.preventDefault();
     });
+
+    document.addEventListener("deviceready", function (e) {
+        console.log("gonna try to launch SecugenPlugin.coolMethod now.");
+        console.log("deviceready");
+        cordova.plugins.SecugenPlugin.coolMethod('hey there!');
+        cordova.plugins.SecugenPlugin.requestPermission(
+          function(results) {
+//              app.display(JSON.stringify(results),errorCallback);
+              console.log("requestPermission results: " + JSON.stringify(results))
+          });
+    }, false);
 
 //    $(document).on('pagebeforeshow', '#index', function(){
 //        $('<input>').appendTo('[ data-role="content"]').attr({'name':'slider','id':'slider','data-highlight':'true','min':'0','max':'100','value':'50','type':'range'}).slider({

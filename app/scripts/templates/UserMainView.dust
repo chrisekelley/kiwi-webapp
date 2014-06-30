@@ -5,9 +5,9 @@
 <p>
     Do you want to:
 </p>
-<p><a href="#" data-role="button" id="registrationLink" class="scanner-buttons">Register a new individual</a></p>
-<p><a href="#" data-role="button" id="registrationLink" class="scanner-buttons">Enter a new report</a></p>
-<p><a href="#" data-role="button" id="registrationLink" class="scanner-buttons">Log out</a></p>
+<p><a data-role="button" id="registrationLink" class="scanner-buttons">Register a new individual</a></p>
+<p><a data-role="button" id="newReportLink" class="scanner-buttons">Enter a new report</a></p>
+<p><a data-role="button" id="logoutLink" class="scanner-buttons">Log out</a></p>
 
 
 

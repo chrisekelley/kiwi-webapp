@@ -1,0 +1,10 @@
+<h1>Registration complete.</h1>
+
+<p>
+    Do you want to:
+</p>
+<p><a data-role="button" id="newReportLink" class="scanner-buttons"> Enter a new service report for this individual</a></p>
+<p><a data-role="button" id="registrationLink" class="scanner-buttons">Register a new individual</a></p>
+
+
+

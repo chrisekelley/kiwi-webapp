@@ -4,6 +4,6 @@
 <input type="text" name="profession" id="profession" placeholder="Profession"/>
 <input type="text" name="association" id="association" placeholder="Association"/>
 <input type="text" name="district" id="district" placeholder="District"/>
-<p><a href="#" data-role="button" id="submitUserRegistration" class="scanner-buttons">Press to Register</a></p>
+<p><a data-role="button" id="submitAdminRegistration" class="scanner-buttons">Press to Register</a></p>
 
 
