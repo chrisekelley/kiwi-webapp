@@ -3,13 +3,21 @@ define([
     'marionette',
     "templates",
     "dust"
+//    "polymer",
+//    "platform"
+//     'wc!../../bower_components/paper-progress/paper-progress.html!dec!polymer'
+//     'wc!../../bower_components/paper-progress/paper-progress.html!dec,'
 ],
 
 function (Backbone, Marionette, compiledTemplates, dust) {
+//function (Backbone, Marionette, compiledTemplates, dust, polymer, platform, paper_progress) {
+//function (Backbone, Marionette, compiledTemplates, dust, platform, paper_progress) {
 
     return Backbone.Marionette.ItemView.extend({
 
         template: 'VerifyView',
+
+        className: 'itemView', // this class will be added to the wrapping div when you render the view
 
         events: {
             'click #verify': "scan",
@@ -46,34 +54,43 @@ function (Backbone, Marionette, compiledTemplates, dust) {
             var revealSlider = function(next, sliderId) {
                 console.log("revealSlider")
 
-                var thisSliderId = "#slider";
+//                var thisSliderId = "#slider";
+                var progress = document.querySelector('paper-progress');
+                var button = document.querySelector('paper-button');
                 if (typeof sliderId !== 'undefined') {
                     thisSliderId = sliderId;
                 }
 
-                $( thisSliderId ).show();
+//                progress.show();
 
-                $( thisSliderId ).parent().find('input').hide();
-                $( thisSliderId ).parent().find('.ui-slider-track').css('margin','0 15px 0 15px');
-                $( thisSliderId ).parent().find('.ui-slider-handle').hide();
-                $( thisSliderId ).slider({
-                    value: 0
-                    // setup the rest ...
-                });
+                startProgress();
 
-                var i = 1;
-                var interval = setInterval(function(){
-                    App.progressBar.setValue(thisSliderId,i);
-                    if(i === 50) {
-                        console.log("Go to next page.")
-                        $( "#message").html("Scanning complete!")
-                        if (typeof next == 'object') {
-                            window.setTimeout(function() { App.trigger("registration")}, 500);
-                        }
-                        clearInterval(interval);
+                var repeat, maxRepeat = 5;
+
+                function nextProgress() {
+                    if (progress.value < progress.max) {
+                        progress.value += (progress.step || 1);
+                    } else {
+//                        if (++repeat >= maxRepeat) {
+////                            button.disabled = false;
+//                            return;
+//                        }
+//                        progress.value = progress.min;
+//                        Platform.flush();
+                        window.setTimeout(function() { App.trigger("registration")}, 500);
                     }
-                    i++;
-                },50);
+                    requestAnimationFrame(nextProgress);
+                }
+
+                function startProgress() {
+                    repeat = 0;
+                    progress.value = progress.min;
+//                    button.disabled = true;
+                    nextProgress();
+                }
+                addEventListener('polymer-ready', function() {
+                    startProgress();
+                });
             };
             if (!typeof cordova == 'undefined') {
                 cordova.plugins.SecugenPlugin.register(function(results) {

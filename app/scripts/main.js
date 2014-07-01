@@ -4,21 +4,21 @@ require([
     "jquery",
     "backbone",
     "app",
-    "marionette",
-    "jquerymobile"
+    "marionette"
+//    "jquerymobile"
 ],
 
 function ($, Backbone, App) {
 
-    // Prevents all anchor click handling
-    $.mobile.linkBindingEnabled = false;
-
-    // Disabling this will prevent jQuery Mobile from handling hash changes
-    $.mobile.hashListeningEnabled = false;
-
-    $(document).bind("mobileinit", function () {
-        $.mobile.linkBindingEnabled = false;
-    });
+//    // Prevents all anchor click handling
+//    $.mobile.linkBindingEnabled = false;
+//
+//    // Disabling this will prevent jQuery Mobile from handling hash changes
+//    $.mobile.hashListeningEnabled = false;
+//
+//    $(document).bind("mobileinit", function () {
+//        $.mobile.linkBindingEnabled = false;
+//    });
 
     // Define your master router on the application namespace and trigger all
     // navigation from this instance.

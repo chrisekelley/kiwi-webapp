@@ -16,9 +16,11 @@ View the app using the [Ripple plugin for Chrome](https://chrome.google.com/webs
 
 This was bootstrapped using the [Generator Maryo](https://github.com/simonblee/generator-maryo).
 
-Added jquery-mobile:
+## Support for web components
 
-    bower install -save jquery-mobile-bower
+This project uses [polymer](http://www.polymer-project.org/) elements to implement web components such as progress bar.
+
+    bower install Polymer/paper-progress
     
 ## Lint
 

@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "dependencies": {
     "requirejs": "~2.1.4",
-    "bootstrap": "~2.3.1",
+    "bootstrap": "~3.2.0",
     "marionette": "~1.0.2",
     "backbone.wreqr": "0.2.0",
     "backbone.eventbinder": "1.0.2",
@@ -13,7 +13,13 @@
     "dustjs-linkedin": "2.0.2",
     "dustjs-linkedin-helpers": "1.1.1",
     "marionette-dust": "0.1.6",
-    "jquery-mobile-bower": "~1.4.2"
+    "jquery-mobile-bower": "~1.4.2",
+    "polymer": "Polymer/polymer#~0.3.3",
+    "core-elements": "Polymer/core-elements#~0.3.3",
+    "paper-elements": "Polymer/paper-elements#~0.3.3",
+    "paper-progress": "Polymer/paper-progress#~0.3.3",
+    "requirejs-plugin-wc": "~0.0.1",
+    "requirejs-text": "~2.0.12"
   },
   "devDependencies": {},
   "resolutions": {

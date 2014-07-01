@@ -4,6 +4,7 @@ define([
     "underscore",
     "backbone",
     "marionette",
+//    "platform",
     "views/VerifyView",
     "views/UserRegistrationView",
     "views/UserMainView",

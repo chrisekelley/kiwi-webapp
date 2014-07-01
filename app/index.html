@@ -6,23 +6,62 @@
     <meta name="format-detection" content="telephone=no" />
     <!-- WARNING: for iOS 7, remove the width=device-width and height=device-height attributes. See https://issues.apache.org/jira/browse/CB-4323 -->
     <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
-    <link rel="stylesheet" type="text/css" href="bower_components/jquery-mobile-bower/css/jquery.mobile-1.4.2.min.css">
+    <!--<link rel="stylesheet" type="text/css" href="bower_components/jquery-mobile-bower/css/jquery.mobile-1.4.2.min.css">-->
+    <link rel="stylesheet" type="text/css" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="bower_components/bootstrap/dist/css/bootstrap-theme.min.css">
     <title>Kiwi</title>
 
     <!-- Point to the compiled stylesheet -->
     <link rel="stylesheet" type="text/css" href="styles/main.css">
     <link rel="stylesheet" type="text/css" href="styles/index.css">
 
+    <script src="bower_components/platform/platform.js"></script>
+
+    <!--<link rel="import" href="bower_components/polymer/polymer.html">-->
+    <link rel="import" href="bower_components/paper-progress/paper-progress.html">
+
+
     <!-- Point to the require script -->
     <script data-main="scripts/config" src="bower_components/requirejs/require.js"></script>
 </head>
 <body>
-<div data-role="page" id="index">
-    <div data-role="header">
-        <h1>Kiwi</h1>
-    </div><!-- /header -->
+<div class="container theme-showcase" data-role="page" id="index">
+    <!-- Fixed navbar -->
+    <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#">Kiwi</a>
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li class="active"><a href="#">Home</a></li>
+                    <!--<li><a href="#about">About</a></li>-->
+                    <!--<li><a href="#contact">Contact</a></li>-->
+                    <!--<li class="dropdown">-->
+                        <!--<a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <span class="caret"></span></a>-->
+                        <!--<ul class="dropdown-menu" role="menu">-->
+                            <!--<li><a href="#">Action</a></li>-->
+                            <!--<li><a href="#">Another action</a></li>-->
+                            <!--<li><a href="#">Something else here</a></li>-->
+                            <!--<li class="divider"></li>-->
+                            <!--<li class="dropdown-header">Nav header</li>-->
+                            <!--<li><a href="#">Separated link</a></li>-->
+                            <!--<li><a href="#">One more separated link</a></li>-->
+                        <!--</ul>-->
+                    <!--</li>-->
+                </ul>
+            </div><!--/.nav-collapse -->
+        </div>
+    </div>
 
-    <div data-role="content" class="app" id="main-region">
+
+    <div data-role="content" class="app jumbotron" id="main-region">
     </div>
     <div data-role="footer">
         <div id="message"></div>
