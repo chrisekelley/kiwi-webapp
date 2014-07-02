@@ -17,10 +17,10 @@
 
 <style shim-shadowdom>
 
-    paper-progress::shadow #progressContainer {
-        height:200%;
-        width:300%;
-    }
+    /*paper-progress::shadow #progressContainer {*/
+        /*height:200%;*/
+        /*width:300%;*/
+    /*}*/
 
 </style>
 

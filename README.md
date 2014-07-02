@@ -21,6 +21,7 @@ This was bootstrapped using the [Generator Maryo](https://github.com/simonblee/g
 This project uses [polymer](http://www.polymer-project.org/) elements to implement web components such as progress bar.
 
     bower install Polymer/paper-progress
+    bower install Polymer/paper-checkbox
     
 ## Lint
 

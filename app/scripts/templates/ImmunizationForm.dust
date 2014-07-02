@@ -1,75 +1,44 @@
-<div id="userMenu" data-role="fieldcontain" class = "app">
-    <div data-role="header" id="header">
-        Kiwi
-    </div>
-    <div data-role="content" id="content" class="ui-content">
         <h1>What Vaccine(s) is being provided?</h1>
 
-      {!<div role="main">!}
-      {!<form>!}
-      {!<div class="ui-checkbox">!}
-      {!<label for="my-checkbox" class="ui-btn ui-btn-inherit ui-btn-icon-left ui-checkbox-off">My Checkbox</label>!}
-      {!<input type="checkbox" id="my-checkbox" data-corners="false" data-enhanced="true"></input>!}
-      {!</div>!}
-      {!</form>!}
-      {!</div>!}
-
-      {!<div data-role="page">!}
-      {!<div role="main" class="ui-content">!}
-      {!<form>!}
-      {!<div class="ui-checkbox">!}
-      {!<label for="my-checkbox" class="ui-btn ui-btn-inherit ui-btn-icon-left ui-checkbox-off">My Checkbox</label>!}
-      {!<input type="checkbox" id="my-checkbox" data-corners="false" data-enhanced="true"/>!}
-      {!</div>!}
-      {!</form>!}
-      {!</div>!}
-      {!</div>!}
-
-        <form id="ui">
-            <fieldset data-role="controlgroup" class="ui-controlgroup ui-controlgroup-vertical ui-corner-all">
+        {!<form id="ui">!}
+            {!<fieldset data-role="controlgroup" class="ui-controlgroup ui-controlgroup-vertical ui-corner-all">!}
               {!<div class="ui-controlgroup-controls ">!}
               {!<div class="ui-field-contain">!}
-                <div role="heading" class="ui-controlgroup-label">
+                <div role="heading">
                     <legend>Select all that apply:</legend>
                 </div>
-                <div class="ui-checkbox">
-                    <label class="ui-btn ui-corner-all ui-btn-inherit ui-btn-icon-left ui-checkbox-off">
-                        <input type="checkbox" name="checkbox-BCG" id="checkbox-BCG" >BCG
-                    </label>
+                <div center horizontal layout>
+                    <paper-checkbox></paper-checkbox>
+                    <div>BCG</div>
                 </div>
-                <div class="ui-checkbox">
-                    <label for="checkbox-HepB" class="ui-btn ui-corner-all ui-btn-inherit ui-btn-icon-left ui-checkbox-off">Hepatitis B</label>
-                    <input type="checkbox" name="checkbox-HepB" id="checkbox-HepB"/>
+                <div center horizontal layout>
+                    <paper-checkbox></paper-checkbox>
+                    <div>Hepatitis B</div>
                 </div>
-                <div class="ui-checkbox">
-                    <label for="checkbox-Polio" class="ui-btn ui-corner-all ui-btn-inherit ui-btn-icon-left ui-checkbox-off">Polio</label>
-                    <input type="checkbox" name="checkbox-Polio" id="checkbox-Polio"/>
+                <div center horizontal layout>
+                    <paper-checkbox></paper-checkbox>
+                    <div>Polio</div>
                 </div>
-                <div class="ui-checkbox">
-                    <label for="checkbox-DTP" class="ui-btn ui-corner-all ui-btn-inherit ui-btn-icon-left ui-last-child ui-checkbox-off">DTP</label>
-                    <input type="checkbox" name="checkbox-DTP" id="checkbox-DTP"/>
+                <div center horizontal layout>
+                    <paper-checkbox></paper-checkbox>
+                    <div>DTP</div>
                 </div>
-                <div class="ui-checkbox">
-                    <label for="checkbox-Pneumoccoccal" class="ui-btn ui-corner-all ui-btn-inherit ui-btn-icon-left ui-last-child ui-checkbox-off">Pneumoccoccal</label>
-                    <input type="checkbox" name="checkbox-DTP" id="checkbox-Pneumoccoccal"/>
+                <div center horizontal layout>
+                    <paper-checkbox></paper-checkbox>
+                    <div>Pneumoccoccal</div>
                 </div>
-                <div class="ui-checkbox">
-                    <label for="checkbox-DTP" class="ui-btn ui-corner-all ui-btn-inherit ui-btn-icon-left ui-last-child ui-checkbox-off">Rotavirus</label>
-                    <input type="checkbox" name="checkbox-Rotavirus" id="checkbox-Rotavirus"/>
+                <div center horizontal layout>
+                    <paper-checkbox></paper-checkbox>
+                    <div>Rotavirus</div>
                 </div>
-                <div class="ui-checkbox">
-                    <label for="checkbox-Measles" class="ui-btn ui-corner-all ui-btn-inherit ui-btn-icon-left ui-last-child ui-checkbox-off">Measles</label>
-                    <input type="checkbox" name="checkbox-DTP" id="checkbox-Measles"/>
+                <div center horizontal layout>
+                    <paper-checkbox></paper-checkbox>
+                    <div>Measles</div>
                 </div>
-                <div class="ui-checkbox">
-                    <label for="checkbox-Rubella" class="ui-btn ui-corner-all ui-btn-inherit ui-btn-icon-left ui-last-child ui-checkbox-off">Rubella</label>
-                    <input type="checkbox" name="checkbox-Rubella" id="checkbox-Rubella"/>
+                <div center horizontal layout>
+                    <paper-checkbox></paper-checkbox>
+                    <div>Rubella</div>
                 </div>
-              {!</div>!}
-            </fieldset>
-        </form>
-
-
 
       {!<div class="ui-checkbox"><label for="checkbox-v-2a" class="ui-btn ui-corner-all ui-btn-inherit ui-btn-icon-left ui-first-child ui-checkbox-on">One</label><input type="checkbox" name="checkbox-v-2a" id="checkbox-v-2a" data-cacheval="false"></div>!}
 
@@ -78,10 +47,6 @@
       {!<div class="ui-checkbox"><label for="checkbox-v-2c" class="ui-btn ui-corner-all ui-btn-inherit ui-btn-icon-left ui-last-child ui-checkbox-on">Three</label><input type="checkbox" name="checkbox-v-2c" id="checkbox-v-2c" data-cacheval="false"></div>!}
 
 
-        <p><a data-role="button" id="continueLink" class="scanner-buttons">Continue</a></p>
-    </div>
-
-</div>
-
+        <p><a data-role="button" id="continueLink" class="btn btn-primary btn-lg">Continue</a></p>
 
 

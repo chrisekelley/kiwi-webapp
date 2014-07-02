@@ -1,0 +1,125 @@
+<!--<link rel="import" href="../polymer/polymer.html">-->
+
+<!--
+Element providing solution to no problem in particular.
+
+##### Example
+
+    <report-form></report-form>
+
+@element report-form
+@blurb Element providing solution to no problem in particular.
+@status alpha
+@homepage http://chrisekelley.github.io/report-form
+-->
+<!--<polymer-element name="report-form" attributes="notitle">-->
+<!--<polymer-element name="report-form" extends="form">-->
+<polymer-element name="report-form" attributes = "theData">
+
+  <template>
+
+    <link rel="stylesheet" href="report-form.css" />
+    <link rel="stylesheet" type="text/css" href="../../bower_components/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="../../bower_components/bootstrap/dist/css/bootstrap-theme.min.css">
+
+
+      <h1>New Report</h1>
+
+      <p>
+          What Services are being provided?
+      </p>
+
+      <div role="heading">
+          <legend>Select all that apply:</legend>
+      </div>
+
+      <core-localstorage id="storage" name="report-form" value="{{theData}}"></core-localstorage>
+
+      <!--<input value="{{this.theData['text']}}">-->
+      <input value="{{theData.text}}">
+
+      <div center horizontal layout>
+          <!--<paper-checkbox checked="{{theData['immunization']}}" id="immunization"></paper-checkbox>-->
+          <!--<input type="checkbox" checked="{{this.theData['immunization']}}" id="immunization">-->
+          <input type="checkbox" checked="{{theData.immunization}}" id="immunization">
+          <div>Immunization</div>
+      </div>
+      <!--<div center horizontal layout>-->
+          <!--<paper-checkbox aria-checked="{{theData.drug}}" id="drug"></paper-checkbox>-->
+          <!--<div>Drug (preventative or treatment</div>-->
+      <!--</div>-->
+      <!--<div center horizontal layout>-->
+          <!--<paper-checkbox aria-checked="{{theData['nutrition']}}" id="nutrition"></paper-checkbox>-->
+          <!--<div>Nutritional Support</div>-->
+      <!--</div>-->
+      <!--<div center horizontal layout>-->
+          <!--<paper-checkbox aria-checked="{{theData['school']}}" id="school"></paper-checkbox>-->
+          <!--<div>School Enrollment</div>-->
+      <!--</div>-->
+
+      <button on-click="{{updateModel}}">Update model</button>
+      <p><a data-role="button" id="submitReportLink" class="btn btn-primary btn-lg">Continue</a></p>
+
+    <content></content>
+
+  </template>
+
+  <script>
+
+    Polymer('report-form', {
+
+//      theData: {
+//          'immunization' : false,
+//          'drug' : false,
+//          'nutrition' : false,
+//          'school' : false
+//      },
+
+
+        /**
+       * The `aProp` is a property that does something cool.
+       *
+       * @property aProp
+       * @type bool
+       */
+      aProp: false,
+
+        /**
+         * The `theData` attribute contains the form data.
+         *
+         * @attribute theData
+         * @type string
+         */
+
+        ready: function() {
+            this.theData = {
+                'immunization' : false,
+                'drug' : false,
+                'nutrition' : false,
+                'school' : false,
+                'text'  : ''
+            }
+//            this.store = this.querySelector('core-localstorage');
+            this.store = this.$.storage;
+        },
+
+        updateModel: function() {
+            this.store.value = this.theData;
+            this.store.save();
+        },
+
+      /**
+       * The `task` method does no work at this time.
+       *
+       * @method task
+       * @return {Object} Returns undefined.
+       * @param {String} dummy Serves no purpose today.
+       */
+      task: function(dummy) {
+      }
+
+    });
+
+  </script>
+
+</polymer-element>

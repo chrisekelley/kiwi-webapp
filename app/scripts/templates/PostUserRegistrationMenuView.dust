@@ -3,8 +3,8 @@
 <p>
     Do you want to:
 </p>
-<p><a data-role="button" id="newReportLink" class="scanner-buttons"> Enter a new service report for this individual</a></p>
-<p><a data-role="button" id="registrationLink" class="scanner-buttons">Register a new individual</a></p>
+<p><a data-role="button" id="newReportLink" class="btn btn-primary btn-lg"> Enter a new service report for this individual</a></p>
+<p><a data-role="button" id="registrationLink" class="btn btn-primary btn-lg">Register a new individual</a></p>
 
 
 

@@ -36,7 +36,7 @@ function (Backbone, Marionette, compiledTemplates, dust) {
         events: {
             'click #registrationLink': "submitRegistration",
             'click #newReportLink': "newReportLink",
-            'click #submitContinueReportLink': "submitContinueReportLink"
+            'click #submitReportLink': "submitContinueReportLink"
         },
 
 
@@ -78,20 +78,20 @@ function (Backbone, Marionette, compiledTemplates, dust) {
 //            this.setElement(newElement);
 //            return this;
 //        },
-        onRender: function(){
-            var self = this;
-            var template = this.options.template;
-            dust.render(template, {name:'helloworld'}, function(err,out){
-//                self.$el.html(out);
-//                console.log("dust: " + out)
-                var newElement = $(out)
-//                self.$el.replaceWith(newElement);
-//                $('#main-region').replaceWith(newElement);
-                $('body').append(newElement);
-//                self.setElement(newElement);
-            });
-            return this;
-        }
+//        onRender: function(){
+//            var self = this;
+//            var template = this.options.template;
+//            dust.render(template, {name:'helloworld'}, function(err,out){
+////                self.$el.html(out);
+////                console.log("dust: " + out)
+//                var newElement = $(out)
+////                self.$el.replaceWith(newElement);
+////                $('#main-region').replaceWith(newElement);
+//                $('body').append(newElement);
+////                self.setElement(newElement);
+//            });
+//            return this;
+//        }
 
 //        onRender: function() {
 //            if (this.ui.checkboxes != null) {

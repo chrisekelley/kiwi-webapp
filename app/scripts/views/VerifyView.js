@@ -70,6 +70,7 @@ function (Backbone, Marionette, compiledTemplates, dust) {
                 function nextProgress() {
                     if (progress.value < progress.max) {
                         progress.value += (progress.step || 1);
+                        requestAnimationFrame(nextProgress);
                     } else {
 //                        if (++repeat >= maxRepeat) {
 ////                            button.disabled = false;
@@ -77,9 +78,12 @@ function (Backbone, Marionette, compiledTemplates, dust) {
 //                        }
 //                        progress.value = progress.min;
 //                        Platform.flush();
-                        window.setTimeout(function() { App.trigger("registration")}, 500);
+                        window.setTimeout(function() {
+                            App.trigger("registration")
+//                            Platform.flush();
+                            return;
+                        }, 500);
                     }
-                    requestAnimationFrame(nextProgress);
                 }
 
                 function startProgress() {

@@ -19,7 +19,8 @@
     "paper-elements": "Polymer/paper-elements#~0.3.3",
     "paper-progress": "Polymer/paper-progress#~0.3.3",
     "requirejs-plugin-wc": "~0.0.1",
-    "requirejs-text": "~2.0.12"
+    "requirejs-text": "~2.0.12",
+    "core-localstorage": "Polymer/core-localstorage#~0.3.3"
   },
   "devDependencies": {},
   "resolutions": {

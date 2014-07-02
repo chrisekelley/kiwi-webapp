@@ -7,9 +7,9 @@
 <p>&nbsp;</p> -->
 <p>To register an individual, please place thumb on the scanner and press the "Scan" button.</p>
 <p>
-    <!--<a href="#" data-role="button" id="register" class="scanner-buttons">Register</a>-->
-    <a data-role="button" id="scan" class="scanner-buttons">Scan</a>
-    <!--<a href="#" data-role="button" id="blink" class="scanner-buttons">Test</a>-->
+    <!--<a href="#" data-role="button" id="register" class="btn btn-primary btn-lg">Register</a>-->
+    <a data-role="button" id="scan" class="btn btn-primary btn-lg">Scan</a>
+    <!--<a href="#" data-role="button" id="blink" class="btn btn-primary btn-lg">Test</a>-->
 </p>
 <input type="range" name="slider" id="sliderNewIndividual" data-highlight="true" min="0" max="50" value="0" style="display: none">
 <p>
@@ -17,7 +17,7 @@
 </p>
 <p style="font-style: italic">If Yes, you must be connected to server</p>
 <p>
-    <a data-role="button" id="verifyYes" class="scanner-buttons">Yes</a> &nbsp&nbsp&nbsp&nbsp&nbsp
-    <a data-role="button" id="verifyNo" class="scanner-buttons">No</a>
+    <a data-role="button" id="verifyYes" class="btn btn-primary btn-lg">Yes</a> &nbsp&nbsp&nbsp&nbsp&nbsp
+    <a data-role="button" id="verifyNo" class="btn btn-primary btn-lg">No</a>
 </p>
 
