@@ -1,9 +1,4 @@
-<p>You do not appear to be registered to use this device.</p>
-<p>Please register with the following information before continuing.</p>
-<input type="text" name="name" id="name" placeholder="Name"/>
-<input type="text" name="profession" id="profession" placeholder="Profession"/>
-<input type="text" name="association" id="association" placeholder="Association"/>
-<input type="text" name="district" id="district" placeholder="District"/>
-<p><a data-role="button" id="submitAdminRegistration" class="btn btn-primary btn-lg">Press to Register</a></p>
+<admin-registration-form></admin-registration-form>
+
 
 

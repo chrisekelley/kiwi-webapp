@@ -35,7 +35,7 @@ module.exports = function (grunt) {
                     '{.tmp,app}/styles/{,*/}*.css',
                     '{.tmp,app}/scripts/{,*/}*.js',
                     'app/images/{,*/}*.{png,jpg,jpeg,gif,webp,svg}',
-                    'app/elements/{,*/}*.html'
+                    'app/elements/{,*/}*.{html,css,js}'
                 ],
                 tasks: ['livereload']
             }

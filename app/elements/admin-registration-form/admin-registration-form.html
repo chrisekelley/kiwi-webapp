@@ -1,0 +1,105 @@
+<!--<link rel="import" href="../polymer/polymer.html">-->
+
+<!--
+Element providing solution to no problem in particular.
+
+##### Example
+
+    <admin-registration-form></admin-registration-form>
+
+@element admin-registration-form
+@blurb Element providing solution to no problem in particular.
+@status alpha
+@homepage http://.github.io/admin-registration-form
+-->
+<polymer-element name="admin-registration-form" attributes="notitle">
+
+  <template>
+
+      <link rel="stylesheet" href="admin-registration-form.css" />
+      <link rel="stylesheet" type="text/css" href="../../bower_components/bootstrap/dist/css/bootstrap.min.css">
+      <link rel="stylesheet" type="text/css" href="../../bower_components/bootstrap/dist/css/bootstrap-theme.min.css">
+      <pouch-db id="pouch" name="report-form"></pouch-db>
+
+      <p>You do not appear to be registered to use this device.</p>
+      <p>Please register with the following information before continuing.</p>
+      <input type="text" name="name" id="name" placeholder="Name" value="{{theData.name}}"/>
+      <input type="text" name="profession" id="profession" placeholder="Profession" value="{{theData.profession}}"/>
+      <input type="text" name="association" id="association" placeholder="Association" value="{{theData.association}}"/>
+      <input type="text" name="district" id="district" placeholder="District" value="{{theData.district}}"/>
+      <p><a data-role="button" id="submitAdminRegistration" class="btn btn-primary btn-lg" on-click="{{updateModel}}">Press to Register</a></p>
+
+    <content></content>
+
+  </template>
+
+  <script>
+
+    Polymer('admin-registration-form', {
+      /**
+       * The `noevent` event is not actually fired from here,
+       * we document it as an example of documenting events.
+       *
+       * @event noevent
+       */
+
+      /**
+       * The `notitle` attribute does not yet have a purpose.
+       *
+       * @attribute notitle
+       * @type string
+       */
+      notitle: '',
+
+      /**
+       * The `aProp` is a property that does something cool.
+       *
+       * @property aProp
+       * @type bool
+       */
+      aProp: false,
+        pouch: '',
+        ready: function() {
+            this.theData = {
+                'name' : '',
+                'profession' : '',
+                'association' : '',
+                'district' : ''
+            }
+            this.store = this.$.storage;
+            this.pouch = this.$.pouch;
+        },
+        pouchChanged: function() {
+            if (this.pouch) {
+                this.db = new PouchDB('pouchy');
+            }
+        },
+        updateModel: function() {
+            this.post(this.theData);
+        },
+        post: function(doc) {
+            var request = this.db.post(doc);
+            request.then(function(e) {
+                console.log('saved' +  JSON.stringify(e));
+            }, function(err) {
+                console.error('error saving', doc._id, err);
+            }.bind(this));
+
+            return request;
+        },
+
+      /**
+       * The `task` method does no work at this time.
+       *
+       * @method task
+       * @return {Object} Returns undefined.
+       * @param {String} dummy Serves no purpose today.
+       */
+      task: function(dummy) {
+      }
+
+    });
+
+  </script>
+
+</polymer-element>
