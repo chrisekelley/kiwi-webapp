@@ -14,6 +14,7 @@ Element providing solution to no problem in particular.
 -->
 <!--<polymer-element name="report-form" attributes="notitle">-->
 <!--<polymer-element name="report-form" extends="form">-->
+
 <polymer-element name="report-form" attributes = "theData">
 
   <template>
@@ -21,7 +22,6 @@ Element providing solution to no problem in particular.
     <link rel="stylesheet" href="report-form.css" />
     <link rel="stylesheet" type="text/css" href="../../bower_components/bootstrap/dist/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="../../bower_components/bootstrap/dist/css/bootstrap-theme.min.css">
-
 
       <h1>New Report</h1>
 
@@ -34,14 +34,11 @@ Element providing solution to no problem in particular.
       </div>
 
       <core-localstorage id="storage" name="report-form" value="{{theData}}"></core-localstorage>
+      <pouch-db id="pouch" name="report-form"></pouch-db>
 
-      <!--<input value="{{this.theData['text']}}">-->
-      <!--<input value="{{theData.text}}">-->
 
       <div center horizontal layout>
           <paper-checkbox id="immunization"></paper-checkbox>
-          <!--<input type="checkbox" checked="{{this.theData['immunization']}}" id="immunization">-->
-          <!--<input type="checkbox" checked="{{theData.immunization}}" id="immunization">-->
           <div>Immunization</div>
       </div>
       <div center horizontal layout>
@@ -57,7 +54,6 @@ Element providing solution to no problem in particular.
           <div>School Enrollment</div>
       </div>
 
-      <!--<button on-click="{{updateModel}}">Update model</button>-->
       <p><a data-role="button" id="submitReportLink" class="btn btn-primary btn-lg" on-click="{{updateModel}}">Continue</a></p>
 
     <content></content>
@@ -66,63 +62,69 @@ Element providing solution to no problem in particular.
 
   <script>
 
-    Polymer('report-form', {
+      Polymer('report-form', {
 
-//      theData: {
-//          'immunization' : false,
-//          'drug' : false,
-//          'nutrition' : false,
-//          'school' : false
-//      },
+          /**
+           * The `theData` attribute contains the form data.
+           *
+           * @attribute theData
+           * @type string
+           */
 
+          pouch: '',
+          ready: function() {
+              this.theData = {
+                  'immunization' : false,
+                  'drug' : false,
+                  'nutrition' : false,
+                  'school' : false
+              }
+              this.store = this.$.storage;
+              this.pouch = this.$.pouch;
+          },
+          pouchChanged: function() {
+              if (this.pouch) {
+                  this.db = new PouchDB('pouchy');
+              }
+          },
+          get: function(id) {
+              var request = this.db.get(id);
 
-        /**
-       * The `aProp` is a property that does something cool.
-       *
-       * @property aProp
-       * @type bool
-       */
-      aProp: false,
+              request.then(function(result) {
+                  //console.log('loaded', result.id);
+              }, function(result) {
+                  console.error('error loading', id, result);
+              });
 
-        /**
-         * The `theData` attribute contains the form data.
-         *
-         * @attribute theData
-         * @type string
-         */
+              return request;
+          },
+          updateModel: function() {
+              this.theData.immunization = this.$.immunization.attributes['aria-checked'].value;
+              this.theData.drug = this.$.drug.attributes['aria-checked'].value;
+              this.theData.nutrition = this.$.nutrition.attributes['aria-checked'].value;
+              this.theData.school = this.$.school.attributes['aria-checked'].value;
 
-        ready: function() {
-            this.theData = {
-                'immunization' : false,
-                'drug' : false,
-                'nutrition' : false,
-                'school' : false,
-            }
-//            this.store = this.querySelector('core-localstorage');
-            this.store = this.$.storage;
-        },
+//              core-localstorage example:
+//              this.store.value = this.theData;
+//              this.store.save();
 
-        updateModel: function() {
-            this.theData.immunization = this.$.immunization.attributes['aria-checked'].value;
-            this.theData.drug = this.$.drug.attributes['aria-checked'].value;
-            this.theData.nutrition = this.$.nutrition.attributes['aria-checked'].value;
-            this.theData.school = this.$.school.attributes['aria-checked'].value;
-            this.store.value = this.theData;
-            this.store.save();
-            console.log("output: " + JSON.stringify(this.theData));
-        },
+              this.put(this.theData);
+              console.log("output: " + JSON.stringify(this.theData));
+          },
+          put: function(doc) {
+              doc._id = '1234';
+              var request = this.db.put(doc);
 
-      /**
-       * The `task` method does no work at this time.
-       *
-       * @method task
-       * @return {Object} Returns undefined.
-       * @param {String} dummy Serves no purpose today.
-       */
-      task: function(dummy) {
-      }
+              request.then(function() {
+                  //console.log('saved');
+              }, function(err) {
+                  console.error('error saving', doc._id, err);
+              }.bind(this));
 
-    });
+              return request;
+          }
+
+      });
 
   </script>
 
