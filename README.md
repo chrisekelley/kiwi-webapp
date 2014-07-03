@@ -14,7 +14,8 @@ View the app using the [Ripple plugin for Chrome](https://chrome.google.com/webs
 
 ## Bootstrapping
 
-This was bootstrapped using the [Generator Maryo](https://github.com/simonblee/generator-maryo).
+This was bootstrapped using the [Generator Maryo](https://github.com/simonblee/generator-maryo). It uses the [Bootstrap](http://getbootstrap.com/) 
+responsive framework and [theme](http://getbootstrap.com/examples/theme/).
 
 ## Support for web components
 
@@ -107,7 +108,12 @@ Note that App context, created when the application was initialised, is availabl
 
 - http://www.html5rocks.com/en/tutorials/webcomponents/yeoman/ - It is a bit out-of-date on how the yeoman polymer element 
 generator works, but it provides a useful background.
-  
+- https://www.dartlang.org/docs/tutorials/forms/ - Client-server tutorial featuring Dart.
+- [Getting Started With Web Components and polymer.js - II]
+(http://4waisenkinder.de/blog/2013/10/05/getting-started-with-web-components-and-polymer-dot-js-ii/) - defining styles, 
+dealing with shadow DOM issues ([souce](https://github.com/stefanjudis/webComponents-tutorial-II/blob/gh-pages/index.html)
+- Addy Osmani - Componentize the Web - LXJS 2014 - [slides](http://addyosmani.github.io/lxjs-slides/#124) and 
+[video](https://www.youtube.com/watch?v=GOPXVLxp9Nc)
     
 ## Lint
 
