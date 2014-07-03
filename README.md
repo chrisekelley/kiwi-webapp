@@ -91,12 +91,17 @@ In the script section, add:
           var request = this.db.post(doc);
           request.then(function(e) {
               console.log('saved' +  JSON.stringify(e));
+              App.trigger("userMain");
           }, function(err) {
               console.error('error saving', doc._id, err);
           }.bind(this));
 
           return request;
       },
+      
+Note that App context, created when the application was initialised, is available to forward the user to the next page:
+
+    App.trigger("userMain");
   
 ### Resources
 
