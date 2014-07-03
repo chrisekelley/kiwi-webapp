@@ -36,29 +36,29 @@ Element providing solution to no problem in particular.
       <core-localstorage id="storage" name="report-form" value="{{theData}}"></core-localstorage>
 
       <!--<input value="{{this.theData['text']}}">-->
-      <input value="{{theData.text}}">
+      <!--<input value="{{theData.text}}">-->
 
       <div center horizontal layout>
-          <!--<paper-checkbox checked="{{theData['immunization']}}" id="immunization"></paper-checkbox>-->
+          <paper-checkbox id="immunization"></paper-checkbox>
           <!--<input type="checkbox" checked="{{this.theData['immunization']}}" id="immunization">-->
-          <input type="checkbox" checked="{{theData.immunization}}" id="immunization">
+          <!--<input type="checkbox" checked="{{theData.immunization}}" id="immunization">-->
           <div>Immunization</div>
       </div>
-      <!--<div center horizontal layout>-->
-          <!--<paper-checkbox aria-checked="{{theData.drug}}" id="drug"></paper-checkbox>-->
-          <!--<div>Drug (preventative or treatment</div>-->
-      <!--</div>-->
-      <!--<div center horizontal layout>-->
-          <!--<paper-checkbox aria-checked="{{theData['nutrition']}}" id="nutrition"></paper-checkbox>-->
-          <!--<div>Nutritional Support</div>-->
-      <!--</div>-->
-      <!--<div center horizontal layout>-->
-          <!--<paper-checkbox aria-checked="{{theData['school']}}" id="school"></paper-checkbox>-->
-          <!--<div>School Enrollment</div>-->
-      <!--</div>-->
+      <div center horizontal layout>
+          <paper-checkbox id="drug"></paper-checkbox>
+          <div>Drug (preventative or treatment</div>
+      </div>
+      <div center horizontal layout>
+          <paper-checkbox id="nutrition"></paper-checkbox>
+          <div>Nutritional Support</div>
+      </div>
+      <div center horizontal layout>
+          <paper-checkbox id="school"></paper-checkbox>
+          <div>School Enrollment</div>
+      </div>
 
-      <button on-click="{{updateModel}}">Update model</button>
-      <p><a data-role="button" id="submitReportLink" class="btn btn-primary btn-lg">Continue</a></p>
+      <!--<button on-click="{{updateModel}}">Update model</button>-->
+      <p><a data-role="button" id="submitReportLink" class="btn btn-primary btn-lg" on-click="{{updateModel}}">Continue</a></p>
 
     <content></content>
 
@@ -97,15 +97,19 @@ Element providing solution to no problem in particular.
                 'drug' : false,
                 'nutrition' : false,
                 'school' : false,
-                'text'  : ''
             }
 //            this.store = this.querySelector('core-localstorage');
             this.store = this.$.storage;
         },
 
         updateModel: function() {
+            this.theData.immunization = this.$.immunization.attributes['aria-checked'].value;
+            this.theData.drug = this.$.drug.attributes['aria-checked'].value;
+            this.theData.nutrition = this.$.nutrition.attributes['aria-checked'].value;
+            this.theData.school = this.$.school.attributes['aria-checked'].value;
             this.store.value = this.theData;
             this.store.save();
+            console.log("output: " + JSON.stringify(this.theData));
         },
 
       /**
