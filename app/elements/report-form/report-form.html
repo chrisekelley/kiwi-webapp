@@ -108,12 +108,11 @@ Element providing solution to no problem in particular.
 //              this.store.value = this.theData;
 //              this.store.save();
 
-              this.put(this.theData);
+              this.post(this.theData);
               console.log("output: " + JSON.stringify(this.theData));
           },
-          put: function(doc) {
-              doc._id = '1234';
-              var request = this.db.put(doc);
+          post: function(doc) {
+              var request = this.db.post(doc);
 
               request.then(function() {
                   //console.log('saved');
