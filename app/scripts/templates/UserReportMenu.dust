@@ -7,6 +7,8 @@
         {!<div role="heading">!}
             {!<legend>Select all that apply:</legend>!}
         {!</div>!}
+
+
         <report-form></report-form>
 
         {!<div center horizontal layout>!}

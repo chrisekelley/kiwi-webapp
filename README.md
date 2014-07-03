@@ -23,6 +23,11 @@ This project uses [polymer](http://www.polymer-project.org/) elements to impleme
     bower install Polymer/paper-progress
     bower install Polymer/paper-checkbox
     
+### Custom elements
+
+Forms are custom web component elements. Usage and demo info are in each element's README:
+ - [report-form](https://github.com/chrisekelley/kiwi-webapp/tree/master/app/elements/report-form) 
+    
 ## Lint
 
 The generator does not produce 100% lint-happy code. See .jshintrc for more info. 

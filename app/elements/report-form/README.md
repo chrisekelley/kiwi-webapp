@@ -1,8 +1,13 @@
 report-form
 ================
 
-See the [component page](http://chrisekelley.github.io/report-form) for more information.
+This polmer element creates a report form and persists to Pouchdb.
 
 ## Getting Started
 
-We've put together a [guide for report-form](http://www.polymer-project.org/docs/start/reusableelements.html) to help get you rolling.
+Add the following to your html file that uses this template:
+
+    <link rel="import" href="bower_components/paper-checkbox/paper-checkbox.html">
+    <link rel="import" href="bower_components/pouch-db/pouch-db.html">
+
+There is a [guide for reusable elements](http://www.polymer-project.org/docs/start/reusableelements.html) to help get you rolling.
