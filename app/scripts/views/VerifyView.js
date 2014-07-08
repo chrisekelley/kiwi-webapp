@@ -37,7 +37,7 @@ function (Backbone, Marionette, compiledTemplates, dust) {
         },
 
         scanNewIndividual: function() {
-            this.scan("userRegistration", "#sliderNewIndividual");
+            this.scan("userRegistration");
         },
 
         scan: function(next, sliderId) {
@@ -53,18 +53,13 @@ function (Backbone, Marionette, compiledTemplates, dust) {
             };
             var revealSlider = function(next, sliderId) {
                 console.log("revealSlider")
-
-//                var thisSliderId = "#slider";
                 var progress = document.querySelector('paper-progress');
                 var button = document.querySelector('paper-button');
                 if (typeof sliderId !== 'undefined') {
                     thisSliderId = sliderId;
                 }
-
 //                progress.show();
-
                 startProgress();
-
                 var repeat, maxRepeat = 5;
 
                 function nextProgress() {
@@ -72,15 +67,12 @@ function (Backbone, Marionette, compiledTemplates, dust) {
                         progress.value += (progress.step || 1);
                         requestAnimationFrame(nextProgress);
                     } else {
-//                        if (++repeat >= maxRepeat) {
-////                            button.disabled = false;
-//                            return;
-//                        }
-//                        progress.value = progress.min;
-//                        Platform.flush();
                         window.setTimeout(function() {
-                            App.trigger("registration")
-//                            Platform.flush();
+                            if (next !== null) {
+                                App.trigger(next)
+                            } else {
+                                App.trigger("registration")
+                            }
                             return;
                         }, 500);
                     }

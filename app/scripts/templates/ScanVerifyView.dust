@@ -11,7 +11,18 @@
     <a data-role="button" id="scan" class="btn btn-primary btn-lg">Scan</a>
     <!--<a href="#" data-role="button" id="blink" class="btn btn-primary btn-lg">Test</a>-->
 </p>
-<input type="range" name="slider" id="sliderNewIndividual" data-highlight="true" min="0" max="50" value="0" style="display: none">
+
+<style shim-shadowdom>
+
+    paper-progress::shadow #progressContainer {
+        height:200%;
+        width:200%;
+    }
+
+</style>
+
+<paper-progress id="scan-progress"></paper-progress>
+
 <p>
     Do you want to verify if this individual was registered before?
 </p>
