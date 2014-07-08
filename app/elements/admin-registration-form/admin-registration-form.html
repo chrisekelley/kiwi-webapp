@@ -12,13 +12,14 @@ Element providing solution to no problem in particular.
 @status alpha
 @homepage http://.github.io/admin-registration-form
 -->
-<polymer-element name="admin-registration-form" attributes="notitle">
+<polymer-element name="admin-registration-form" attributes="db">
 
   <template>
 
       <link rel="stylesheet" href="admin-registration-form.css" />
       <link rel="stylesheet" type="text/css" href="../../bower_components/bootstrap/dist/css/bootstrap.min.css">
       <link rel="stylesheet" type="text/css" href="../../bower_components/bootstrap/dist/css/bootstrap-theme.min.css">
+      <app-globals id="globals"></app-globals>
       <pouch-db id="pouch" name="report-form"></pouch-db>
 
       <p>You do not appear to be registered to use this device.</p>
@@ -35,6 +36,12 @@ Element providing solution to no problem in particular.
 
   <script>
 
+      document.addEventListener("deviceready", function (e) {
+          console.log("deviceready in reg form");
+
+
+      }, false);
+
     Polymer('admin-registration-form', {
       /**
        * The `noevent` event is not actually fired from here,
@@ -50,6 +57,7 @@ Element providing solution to no problem in particular.
        * @type string
        */
       notitle: '',
+      DB: '',
 
       /**
        * The `aProp` is a property that does something cool.
@@ -57,8 +65,28 @@ Element providing solution to no problem in particular.
        * @property aProp
        * @type bool
        */
-      aProp: false,
+        aProp: false,
         pouch: '',
+        attached: function() {
+            console.log("Attaching form to pouch....");
+            this.isAttached = true;
+
+        },
+        domReady: function() {
+            console.log("domReady ....");
+            this.isDomReady = true;
+            // wait for bindings are all setup
+//            this.async('pouchChanged');
+            if (this.pouch) {
+//                this.db = new PouchDB('pouchy');
+//                this.db = new App.PouchDB('pouchy');
+                this.globals = this.$.globals;
+                this.PouchDB = this.globals.App.PouchDB;
+                this.$.pouch.PouchDB = this.PouchDB;
+                // wait for bindings are all setup
+                this.async('pouchChanged');
+            }
+        },
         ready: function() {
             this.theData = {
                 'name' : '',
@@ -70,8 +98,14 @@ Element providing solution to no problem in particular.
             this.pouch = this.$.pouch;
         },
         pouchChanged: function() {
-            if (this.pouch) {
-                this.db = new PouchDB('pouchy');
+            if (this.$.pouch.PouchDB) {
+                this.db = new this.$.pouch.PouchDB('pouchy');
+            }
+        },
+        pouchCreated: function() {
+            console.log("PouchDB is created.")
+            if (this.$.pouch.PouchDB) {
+                this.db = new this.$.pouch.PouchDB('pouchy');
             }
         },
         updateModel: function() {

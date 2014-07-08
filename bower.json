@@ -21,7 +21,9 @@
     "requirejs-plugin-wc": "~0.0.1",
     "requirejs-text": "~2.0.12",
     "core-localstorage": "Polymer/core-localstorage#~0.3.3",
-    "pouch-db": "hubgit/pouch-db#master"
+    "pouch-db": "chrisekelley/pouch-db",
+    "app-globals": "chrisekelley/polymer-app-globals",
+    "backbone-pouch": "https://raw.github.com/jo/backbone-pouch/master/dist/backbone-pouch.js"
   },
   "devDependencies": {},
   "resolutions": {

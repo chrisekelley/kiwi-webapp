@@ -9,13 +9,16 @@ define([
     "views/UserRegistrationView",
     "views/UserMainView",
     "views/UserFormView",
+    "PouchDB",
     "dust"
-],
+  ],
 
-function (_, Backbone, Marionette, VerifyView, UserRegistrationView, UserMainView, UserFormView) {
+function (_, Backbone, Marionette, VerifyView, UserRegistrationView, UserMainView, UserFormView, PouchDB) {
 
-    window.App = new Backbone.Marionette.Application();
+    window.App = new Marionette.Application();
     console.log("Creating new Marionette App")
+
+    App.PouchDB = PouchDB;
 
     App.Controller = {
         displayScanner: function(user){
@@ -36,6 +39,7 @@ function (_, Backbone, Marionette, VerifyView, UserRegistrationView, UserMainVie
             } else {
                 staticView = new UserRegistrationView({template: 'AdminUserRegistrationView'});
             }
+            staticView.PouchDB = PouchDB;
             staticView.userType = user;
             App.mainRegion.show(staticView);
         },

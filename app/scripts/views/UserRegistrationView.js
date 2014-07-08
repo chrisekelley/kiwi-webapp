@@ -2,10 +2,11 @@ define([
     'backbone',
     'marionette',
     "templates",
-    "dust"
+    "dust",
+    "PouchDB"
 ],
 
-function (Backbone, Marionette, compiledTemplates, dust) {
+function (Backbone, Marionette, compiledTemplates, dust, PouchDB) {
 
     return Backbone.Marionette.ItemView.extend({
 
@@ -17,6 +18,7 @@ function (Backbone, Marionette, compiledTemplates, dust) {
         },
 
         userType: null,
+        PouchDB: null,
 
         initialize: function () {
             console.log("init")

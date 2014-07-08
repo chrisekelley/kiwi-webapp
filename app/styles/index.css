@@ -243,10 +243,16 @@ div.ui-controlgroup-label {
     /*text-shadow: 0 1px 0 #f3f3f3;*/
 /*}*/
 
-paper-progress::shadow #progressContainer {
-    height:200%;
-    width:300%;
-}
+/*paper-progress::shadow #progressContainer {*/
+    /*height:20px;*/
+    /*width:300%;*/
+/*}*/
+
+/*polyfill-next-selector { content: ':host #scan-progress'; }*/
+/*::content #progressContainer {*/
+    /*height:20px;*/
+    /*width:300%;*/
+/*}*/
 
 paper-checkbox {
     padding: 20px;

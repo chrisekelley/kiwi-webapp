@@ -1,4 +1,3 @@
-<admin-registration-form></admin-registration-form>
-
+<admin-registration-form pouch = {PouchDB|s}></admin-registration-form>
 
 

@@ -17,11 +17,11 @@
 
 <style shim-shadowdom>
 
-    /*paper-progress::shadow #progressContainer {*/
-        /*height:200%;*/
-        /*width:300%;*/
-    /*}*/
+    paper-progress::shadow #progressContainer {
+        height:200%;
+        width:200%;
+    }
 
 </style>
 
-<paper-progress class="pink"></paper-progress>
+<paper-progress id="scan-progress"></paper-progress>

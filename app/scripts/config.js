@@ -14,6 +14,8 @@ requirejs.config({
         'backbone.wreqr' : '../bower_components/backbone.wreqr/lib/amd/backbone.wreqr',
         'backbone.eventbinder' : '../bower_components/backbone.eventbinder/lib/amd/backbone.eventbinder',
         'backbone.babysitter' : '../bower_components/backbone.babysitter/lib/amd/backbone.babysitter',
+        "BackbonePouch": "../bower_components/backbone-pouch",
+        'PouchDB' : '../bower_components/pouchdb/dist/pouchdb-nightly',
         templates: 'templates/compiled'
 //        platform: '../bower_components/platform/platform',
 //        polymer: '../bower_components/polymer/polymer',
@@ -25,6 +27,19 @@ requirejs.config({
         backbone: {
             deps: ['underscore', 'jquery'],
             exports: 'Backbone'
+        },
+        //Marionette
+//        "marionette":{
+//            "deps":["underscore", "backbone", "jquery"],
+//            "exports":"Marionette"
+//        },
+        "BackbonePouch": {
+            "deps":["backbone", "PouchDB"],
+            "exports":"BackbonePouch"
+        },
+        "PouchDB": {
+            "deps":["backbone"],
+            "exports":"PouchDB"
         },
         underscore: {
             exports: '_'

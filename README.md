@@ -103,6 +103,17 @@ In the script section, add:
 Note that App context, created when the application was initialised, is available to forward the user to the next page:
 
     App.trigger("userMain");
+    
+### Developing elements and bower
+
+Some of the elements I've developed will be used in other projects. When sorting out bugs, it is useful to do a 'bower link' 
+in the element's source and then in this project link it to the element source. 
+
+    source/polymer-app-globals]$ bower link  
+    source/kiwi-webapp]$ bower link app-globals    
+    
+Unfortunately these bower linked elements don't get built when deploying to cordova ('cordova run android') so it is necessary 
+to wipe the bower-components dir and 'bower install' to get ehe elements to your app.
   
 ### Resources
 
