@@ -66,39 +66,24 @@ Add the pouch-db element, an input field, and a submit button to your form:
     
       <template>
 
+          <app-globals id="globals"></app-globals>
           <pouch-db id="pouch" name="report-form"></pouch-db>
           <input type="text" name="name" id="name" placeholder="Name" value="{{theData.name}}"/>
           <p><a data-role="button" id="submitAdminRegistration" class="btn btn-primary btn-lg" on-click="{{updateModel}}">Press to Register</a></p>
           
-In the script section, add:
+When the dom is ready, init pouchdb. This is a bit harder in this case, because the Chrome webview, the target container, 
+does not handle attached scripts very well. To compensate, we pass App.PouchDB to the pouch container.
 
-      pouch: '',
-      ready: function() {
-          this.theData = {
-              'name' : ''
-          }
-          this.store = this.$.storage;
-          this.pouch = this.$.pouch;
-      },
-      pouchChanged: function() {
-          if (this.pouch) {
-              this.db = new PouchDB('pouchy');
-          }
-      },
-      updateModel: function() {
-          this.post(this.theData);
-      },
-      post: function(doc) {
-          var request = this.db.post(doc);
-          request.then(function(e) {
-              console.log('saved' +  JSON.stringify(e));
-              App.trigger("userMain");
-          }, function(err) {
-              console.error('error saving', doc._id, err);
-          }.bind(this));
-
-          return request;
-      },
+        domReady: function() {
+            console.log("domReady ....");
+            this.isDomReady = true;
+            // wait for bindings are all setup
+            if (this.pouch) {
+                this.$.pouch.PouchDB = App.PouchDB;
+                // wait for bindings are all setup
+                this.async('pouchChanged');
+            }
+        }
       
 Note that App context, created when the application was initialised, is available to forward the user to the next page:
 

@@ -12,7 +12,7 @@ Element providing solution to no problem in particular.
 @status alpha
 @homepage http://.github.io/admin-registration-form
 -->
-<polymer-element name="admin-registration-form" attributes="db">
+<polymer-element name="admin-registration-form">
 
   <template>
 
@@ -80,9 +80,10 @@ Element providing solution to no problem in particular.
             if (this.pouch) {
 //                this.db = new PouchDB('pouchy');
 //                this.db = new App.PouchDB('pouchy');
-                this.globals = this.$.globals;
-                this.PouchDB = this.globals.App.PouchDB;
-                this.$.pouch.PouchDB = this.PouchDB;
+//                this.globals = this.$.globals;
+//                this.PouchDB = this.globals.App.PouchDB;
+//                this.$.pouch.PouchDB = this.PouchDB;
+                this.$.pouch.PouchDB = App.PouchDB;
                 // wait for bindings are all setup
                 this.async('pouchChanged');
             }

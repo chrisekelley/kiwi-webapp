@@ -22,7 +22,7 @@
     "requirejs-text": "~2.0.12",
     "core-localstorage": "Polymer/core-localstorage#~0.3.3",
     "pouch-db": "chrisekelley/pouch-db",
-    "app-globals": "chrisekelley/polymer-app-globals",
+//    "app-globals": "chrisekelley/polymer-app-globals",
     "backbone-pouch": "https://raw.github.com/jo/backbone-pouch/master/dist/backbone-pouch.js"
   },
   "devDependencies": {},
