@@ -35,8 +35,7 @@ function (Backbone, Marionette, compiledTemplates, dust) {
 
         events: {
             'click #registrationLink': "submitRegistration",
-            'click #newReportLink': "newReportLink",
-            'click #submitReportLink': "submitContinueReportLink"
+            'click #newReportLink': "newReportLink"
         },
 
 
