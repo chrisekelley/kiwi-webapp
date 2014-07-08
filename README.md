@@ -19,7 +19,8 @@ responsive framework and [theme](http://getbootstrap.com/examples/theme/).
 
 ## Support for web components
 
-This project uses [polymer](http://www.polymer-project.org/) elements to implement web components such as progress bar.
+This project uses [polymer](http://www.polymer-project.org/) elements to implement web components such as progress bar and 
+forms. Records are persisted via PouchDB directly from the form javascript, instead of from backbone.js-managed objects.
 
     bower install Polymer/paper-progress
     bower install Polymer/paper-checkbox
@@ -99,6 +100,10 @@ in the element's source and then in this project link it to the element source.
     
 Unfortunately these bower linked elements don't get built when deploying to cordova ('cordova run android') so it is necessary 
 to wipe the bower-components dir and 'bower install' to get ehe elements to your app.
+
+## Backbone
+
+Backbone.js and Marrionette.js are used to provide route and view management.
   
 ### Resources
 
