@@ -90,6 +90,10 @@ Note that App context, created when the application was initialised, is availabl
 
     App.trigger("userMain");
     
+Use your new element in your dust template (example from AdminUserRegistration.dust):
+
+    <admin-registration-form pouch = {PouchDB|s}></admin-registration-form>
+
 ### Developing elements and bower
 
 Some of the elements I've developed will be used in other projects. When sorting out bugs, it is useful to do a 'bower link' 

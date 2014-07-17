@@ -110,7 +110,8 @@ Element providing solution to no problem in particular.
             }
         },
         updateModel: function() {
-            this.post(this.theData);
+//            this.post(this.theData);
+            App.API.saveRecord(this.theData);
         },
         post: function(doc) {
             var request = this.db.post(doc);

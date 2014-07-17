@@ -28,6 +28,14 @@ module.exports = function (grunt) {
                 files: 'app/scripts/templates/*.dust',
                 tasks: "dustjs"
             },
+            coffee: {
+                files: ['<%= yeoman.app %>/scripts/{,*/}*.coffee'],
+                tasks: ['coffee:dist']
+            },
+            coffeeTest: {
+                files: ['test/spec/{,*/}*.coffee'],
+                tasks: ['coffee:test']
+            },
             livereload: {
                 options: { livereload: true },
                 files: [
@@ -112,6 +120,28 @@ module.exports = function (grunt) {
                 options: {
                     specs: 'test/spec/{,*/}*.js'
                 }
+            }
+        },
+        coffee: {
+            dist: {
+                files: [{
+                    // rather than compiling multiple files here you should
+                    // require them into your main .coffee file
+                    expand: true,
+                    cwd: '<%= yeoman.app %>/scripts',
+                    src: '{,*/}*.coffee',
+                    dest: '.tmp/scripts',
+                    ext: '.js'
+                }]
+            },
+            test: {
+                files: [{
+                    expand: true,
+                    cwd: 'test/spec',
+                    src: '{,*/}*.coffee',
+                    dest: '.tmp/spec',
+                    ext: '.js'
+                }]
             }
         },
         requirejs: {
@@ -237,6 +267,7 @@ module.exports = function (grunt) {
 
         grunt.task.run([
             'clean:server',
+            'coffee:dist',
             'concurrent:server',
 //            'livereload-start',
             'connect:livereload',
@@ -247,6 +278,7 @@ module.exports = function (grunt) {
 
     grunt.registerTask('test', [
         'clean:server',
+        'coffee',
         'concurrent:test',
         'connect:test',
         'jasmine'
@@ -254,6 +286,7 @@ module.exports = function (grunt) {
 
     grunt.registerTask('build', [
         'clean:dist',
+        'coffee',
         'useminPrepare',
         'concurrent:dist',
         'requirejs',

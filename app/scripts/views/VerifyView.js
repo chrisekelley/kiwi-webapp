@@ -68,7 +68,7 @@ function (Backbone, Marionette, compiledTemplates, dust) {
                         requestAnimationFrame(nextProgress);
                     } else {
                         window.setTimeout(function() {
-                            if (next !== null) {
+                            if (typeof next == 'string') {
                                 App.trigger(next)
                             } else {
                                 App.trigger("registration")

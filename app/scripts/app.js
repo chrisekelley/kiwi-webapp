@@ -10,15 +10,18 @@ define([
     "views/UserMainView",
     "views/UserFormView",
     "PouchDB",
+    "models/record",
     "dust"
   ],
 
-function (_, Backbone, Marionette, VerifyView, UserRegistrationView, UserMainView, UserFormView, PouchDB) {
+function (_, Backbone, Marionette, VerifyView, UserRegistrationView, UserMainView, UserFormView, PouchDB, Record) {
 
     window.App = new Marionette.Application();
     console.log("Creating new Marionette App")
 
     App.PouchDB = PouchDB;
+
+    App.db = new App.PouchDB('kiwi');
 
     App.Controller = {
         displayScanner: function(user){
@@ -62,8 +65,13 @@ function (_, Backbone, Marionette, VerifyView, UserRegistrationView, UserMainVie
             $( "#message").html("")
             var staticView = new UserFormView({template: 'ImmunizationForm'});
             App.mainRegion.show(staticView);
+        },
+        saveRecord: function(record){
+            $( "#message").html("")
+            var record = new Record(record);
+            record.post();
         }
-    };
+};
 
 
     App.Router = Marionette.AppRouter.extend({
@@ -100,6 +108,9 @@ function (_, Backbone, Marionette, VerifyView, UserRegistrationView, UserMainVie
         },
         displayImmunization: function(){
             App.Controller.displayImmunization();
+        },
+        saveRecord: function(record){
+            App.Controller.saveRecord(record);
         }
     };
 
@@ -135,6 +146,8 @@ function (_, Backbone, Marionette, VerifyView, UserRegistrationView, UserMainVie
         App.navigate("displayImmunization");
         API.displayImmunization();
     });
+
+    App.API = API;
 
     // Add as many of these as you like
     App.addInitializer(function () {
