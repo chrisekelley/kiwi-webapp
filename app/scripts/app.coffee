@@ -90,6 +90,7 @@ define [
     registration: "registration"
     userScan: "userScan"
     userMain: "userMain"
+    userRegistration: "userRegistration"
     postUserRegistrationMenu: "postUserRegistrationMenu"
     displayReportMenu: "displayReportMenu"
     displayImmunization: "displayImmunization"
@@ -109,6 +110,10 @@ define [
 
     userMain: ->
       App.Controller.displayUserMain()
+      return
+
+    userRegistration: ->
+      API.registration "user"
       return
 
     postUserRegistrationMenu: ->

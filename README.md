@@ -20,31 +20,34 @@ responsive framework and [theme](http://getbootstrap.com/examples/theme/).
 ## Support for web components
 
 This project uses [polymer](http://www.polymer-project.org/) elements to implement web components such as progress bar and 
-forms. Records are persisted via PouchDB directly from the form javascript, instead of from backbone.js-managed objects.
+forms. Records are persisted from backbone.js-managed objects.
+
+### Example of installing web components
+
+These are already included in this project, but just in case you're wondering how they got there.
 
     bower install Polymer/paper-progress
     bower install Polymer/paper-checkbox
     
 ### Forms are Polymer custom elements
 
-Forms are custom web component elements. Usage and demo info are in each element's README:
+Forms are custom web component elements, which enables the developer to take advantage of web components' data binding. 
+Polymer provider [two-way data binding](http://www.polymer-project.org/docs/polymer/databinding.html) which makes it 
+remarkably easy to manage data.
+
+Usage and demo info are in each element's README:
  - [report-form](https://github.com/chrisekelley/kiwi-webapp/tree/master/app/elements/report-form) 
  
 Kudos to [Alf Eaton](https://github.com/hubgit) - his [vege-table](https://github.com/hubgit/vege-table) was a critical 
-resource for figuring out the pouchdb persistence. I'm using his [Pouchdb polymer element](https://github.com/hubgit/pouch-db).
+resource for figuring out the pouchdb persistence. His [Pouchdb polymer element](https://github.com/hubgit/pouch-db) was very helpful.
 
 ### Creating a new form.
 
-Make sure yeoman is installed. 
-Install the Polymer generator:
+I originally used the [Polymer generator](https://github.com/yeoman/generator-polymer); however, it is currently not working 
+for me. Instructions on what used to work are in POLYMER.md.
 
-    npm install generator-polymer -g
-    
-Generate the code:
-
-    cd elements
-    mkdir my-new-form && cd $_
-    yo polymer:element my-new-form
+Copy app/elements/admin-registration-form directory. Change the dir name and the newdir/admi-registration-form.html to the 
+new name of your element.
     
 Polymer provider [two-way data binding](http://www.polymer-project.org/docs/polymer/databinding.html) which makes it 
 remarkably easy to manage data.
@@ -71,24 +74,12 @@ Add the pouch-db element, an input field, and a submit button to your form:
           <pouch-db id="pouch" name="report-form"></pouch-db>
           <input type="text" name="name" id="name" placeholder="Name" value="{{theData.name}}"/>
           <p><a data-role="button" id="submitAdminRegistration" class="btn btn-primary btn-lg" on-click="{{updateModel}}">Press to Register</a></p>
-          
-When the dom is ready, init pouchdb. This is a bit harder in this case, because the Chrome webview, the target container, 
-does not handle attached scripts very well. To compensate, we pass App.PouchDB to the pouch container.
-
-        domReady: function() {
-            console.log("domReady ....");
-            this.isDomReady = true;
-            // wait for bindings are all setup
-            if (this.pouch) {
-                this.$.pouch.PouchDB = App.PouchDB;
-                // wait for bindings are all setup
-                this.async('pouchChanged');
-            }
-        }
       
-Note that App context, created when the application was initialised, is available to forward the user to the next page:
+Note that App context, created when the application was initialised, is available to save the form data:
 
-    App.trigger("userMain");
+        updateModel: function() {
+            App.API.saveRecord(this.theData);
+        },
     
 Use your new element in your dust template (example from AdminUserRegistration.dust):
 
